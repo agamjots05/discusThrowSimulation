@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/backend/src/main/resources/application.properties">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/backend/src/main/resources/application.properties" />
+              <option name="originalContent" value="spring.application.name=discusBackend&#10;" />
+              <option name="updatedContent" value="spring.application.name=discusBackend&#10;&#10;# Enable DEBUG logging for our application package so logger.debug is visible&#10;logging.level.com.example=DEBUG&#10;# Optional: make the console pattern include the log level and logger name&#10;logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{36}] - %msg%n" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
