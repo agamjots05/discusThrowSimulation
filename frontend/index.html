@@ -9,13 +9,17 @@
   <body>
     <div id="app">
             <h1> Discus Throw Simulation</h1>
-            <form >
-                <label id="velId">Initial Velocity:</label>
-                <input for="velId" type="number"> <br> <br>
-                <label id="angId">Angle Of Release:</label>
-                <input for="angId" type="number"> <br><br>
-                <input type="submit" value="Create Simulation">
+            <form id="formId" >
+                <label>Initial Velocity:</label>
+                <input id="velId" type="number"> <br> <br>
+                <label>Angle Of Release:</label>
+                <input id="angId" type="number"> <br><br>
+                <input type="submit" src="/api.ts" value="Create Simulation">
             </form>
+            <canvas id="canvasId">
+
+            </canvas>
+            <script type="module" src="src/main.ts"></script>
      </div>
   </body>
 </html>
