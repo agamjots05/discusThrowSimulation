@@ -4,6 +4,7 @@ export interface Point {
 }
 
 export interface PhysicsRequest {
+
     velocity: number;
     angle: number;
 
