@@ -1,6 +1,6 @@
-import type { PhysicsRequest } from "./physics.types";
+import type { PhysicsRequest, Point } from "./physics.types";
 
-export async function sendSimulationData(velocity: number, angle: number){
+export async function sendSimulationData(velocity: number, angle: number): Promise<Point[]>{
 
     const request: PhysicsRequest = {
         velocity: velocity,
@@ -12,12 +12,9 @@ export async function sendSimulationData(velocity: number, angle: number){
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(request)
     })
-    const data = await response.json();
+    const data :Point[] = await response.json();
 
-    console.log(data);
-
-    
-
+    return data;
     // console.log("Entered API Section")
     // console.log(velocity);
     // console.log(angle);
