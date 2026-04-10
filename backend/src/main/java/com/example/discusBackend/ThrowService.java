@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ThrowService {
     private static final Logger logger = LoggerFactory.getLogger(ThrowService.class);
-    public List<Point> findDistance(double angle, double velocity) {
+    public PhysicsResponse findDistance(double angle, double velocity) {
         List<Point> points = new ArrayList<>();
         double newAngle = Math.toRadians(angle);
 
@@ -24,7 +24,7 @@ public class ThrowService {
         double x = 0;
         double y = 0;
         double t = 0;
-
+        double maxX = 0, maxY = 0;
         int iterations = 0;
         while (y >= 0 ){
             x = vX * t;
@@ -33,6 +33,10 @@ public class ThrowService {
             if (y >= 0){
                 System.out.println("Added point to our array");
                 System.out.printf("Val of x: %f, val of y: %f\n ", x,y);
+
+                // Setting maxX and maxY values
+                if (x > maxX) maxX = x;
+                if (y > maxY) maxY = y;
                 points.add(new Point(x,y));
             }
             t += TIME_STEP;
@@ -42,6 +46,9 @@ public class ThrowService {
                 break;
             }
         }
-        return points;
+        System.out.println("Printing Max X and Max Y Values Below");
+        System.out.println(maxX);
+        System.out.println(maxY);
+        return new PhysicsResponse(points, maxX, maxY);
     }
 }
