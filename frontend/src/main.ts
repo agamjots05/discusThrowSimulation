@@ -1,4 +1,5 @@
 import { sendSimulationData } from "./api";
+import type { PhysicsResponse } from "./physics.types";
 import { Renderer } from "./render";
 
 const form = document.getElementById("formId")!;
@@ -13,10 +14,10 @@ form.addEventListener("submit", async (event) => {
     const a = parseFloat(angInput.value);
 
     try {
-        const points = await sendSimulationData(v,a);
+        const throwObject: PhysicsResponse =  await sendSimulationData(v,a);
         const render = new Renderer("canvasId");
 
-        render.drawTrajectory(points);
+        render.drawTrajectory(throwObject.points, throwObject.maxX, throwObject.maxY);
 
     } catch(error) {
         console.log(error);

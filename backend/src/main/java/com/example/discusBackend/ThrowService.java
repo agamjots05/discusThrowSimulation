@@ -25,7 +25,7 @@ public class ThrowService {
         double y = 0;
         double t = 0;
         double maxX = 0, maxY = 0;
-        int iterations = 0;
+//        int iterations = 0;
         while (y >= 0 ){
             x = vX * t;
             y = (vY*t) - (0.5 * GRAVITY * t * t);
@@ -40,13 +40,15 @@ public class ThrowService {
                 points.add(new Point(x,y));
             }
             t += TIME_STEP;
-            iterations ++;
-            if (iterations >= 2000){
-                logger.warn("Reached Maximum Number of Iterations");
-                break;
-            }
+//            iterations ++;
+//            if (iterations >= 2000){
+//                logger.warn("Reached Maximum Number of Iterations");
+//                break;
+//            }
         }
-        System.out.println("Printing Max X and Max Y Values Below");
+        // Make sure to add final point ending at (0,0) for graph to look complete.
+//        points.add(new Point(maxX,0));
+//        System.out.println("Printing Max X and Max Y Values Below");
         System.out.println(maxX);
         System.out.println(maxY);
         return new PhysicsResponse(points, maxX, maxY);

@@ -12,5 +12,7 @@ export interface PhysicsRequest {
     mass?: number;
 }
 export interface PhysicsResponse {
-    trajectory: Point[];
+    points: Point[];
+    maxX: number;
+    maxY: number;
 }
