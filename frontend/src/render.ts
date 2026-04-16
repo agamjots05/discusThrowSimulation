@@ -20,10 +20,7 @@ export class Renderer {
     public clear(): void{
         this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height);
     }
-    /* TODO: 
-     Need to create some form of x and y-axis showing the units that were traveled throughout the throw
-    
-    */
+
     private createAxis(scale: number, maxX: number, maxY: number) {
         const chartBottom = this.canvas.height - this.margin;
         const chartLeft = this.margin;
@@ -45,11 +42,11 @@ export class Renderer {
             const x = chartLeft + (i * scale);
             this.ctx.beginPath();
             this.ctx.moveTo(x, chartBottom);
-            this.ctx.lineTo(x, chartBottom + tickSize); // Tick goes DOWN
+            this.ctx.lineTo(x, chartBottom + tickSize); 
             this.ctx.stroke();
 
             this.ctx.textAlign = "center";
-            this.ctx.textBaseline = "top"; // Aligns text below the point
+            this.ctx.textBaseline = "top"; 
             this.ctx.fillText(`${Math.round(i)}m`, x, chartBottom + tickSize + 2);
         }
 
@@ -91,14 +88,29 @@ export class Renderer {
 
         const chartBottom = this.canvas.height - this.margin;
         const chartLeft = this.margin;
+        let isCurrentlyRed = false;
 
         points.forEach((point, index) => {
             const xPos = chartLeft + (point.x * scale);
             const yPos = chartBottom - (point.y * scale); // Subtract from our new "floor"
-
+            console.log(point.isInc);
+            
+            // Change stroke style when discus is decreasing
             if (index === 0) {
                 this.ctx.moveTo(xPos, yPos);
-            } else {
+            } 
+            else {
+                if (!isCurrentlyRed && !point.isInc){
+                    //Finish blue stroke and display on screen
+                    this.ctx.lineTo(xPos,yPos);
+                    this.ctx.stroke();
+
+                    //Start new path using red stroke
+                    this.ctx.beginPath();
+                    this.ctx.strokeStyle = "Red";
+                    this.ctx.moveTo(xPos,yPos);
+                    isCurrentlyRed = true;
+                }
                 this.ctx.lineTo(xPos, yPos);
             }
         });

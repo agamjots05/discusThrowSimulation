@@ -25,6 +25,7 @@ public class ThrowService {
         double y = 0;
         double t = 0;
         double maxX = 0, maxY = 0;
+        boolean isInc = true;
 //        int iterations = 0;
         while (y >= 0 ){
             x = vX * t;
@@ -37,7 +38,11 @@ public class ThrowService {
                 // Setting maxX and maxY values
                 if (x > maxX) maxX = x;
                 if (y > maxY) maxY = y;
-                points.add(new Point(x,y));
+                //We're checking whether current y value is smaller than prev y value, if so we can set 'isInc' to false
+                if (isInc == true && !points.isEmpty() && y < points.getLast().getY()){
+                    isInc = false;
+                }
+                points.add(new Point(x,y, isInc));
             }
             t += TIME_STEP;
 //            iterations ++;
