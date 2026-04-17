@@ -14,7 +14,7 @@ form.addEventListener("submit", async (event) => {
     const a = parseFloat(angInput.value);
 
     try {
-        const throwObject: PhysicsResponse =  await sendSimulationData(v,a);
+        const throwObject: PhysicsResponse = await sendSimulationData(v,a);
         const render = new Renderer("canvasId");
 
         render.drawTrajectory(throwObject.points, throwObject.maxX, throwObject.maxY);

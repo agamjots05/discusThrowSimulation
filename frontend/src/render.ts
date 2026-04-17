@@ -4,6 +4,7 @@ export class Renderer {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
     private margin: number;
+    private currentAnimationId: number | null = null;
 
     constructor(canvasId: string){
         this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
@@ -69,8 +70,14 @@ export class Renderer {
         }
     }
 
+    
     public drawTrajectory(points: Point[], maxX: number, maxY: number) {
+        // Removing any pre-existing animations before moving on 
+        if (this.currentAnimationId !== null){
+            cancelAnimationFrame(this.currentAnimationId);
+        }
         this.clear();
+
         if (points.length === 0) return;
 
         // Adjusting padding slightly so the graph doesn't hit the very edges
@@ -89,14 +96,20 @@ export class Renderer {
         const chartBottom = this.canvas.height - this.margin;
         const chartLeft = this.margin;
         let isCurrentlyRed = false;
+        let curIndex = 0;
 
-        points.forEach((point, index) => {
+        const animate = () => {
+            // Index out of bounds
+            if (curIndex >= points.length){
+                this.currentAnimationId = null;
+                return
+            }
+
+            const point = points[curIndex];
             const xPos = chartLeft + (point.x * scale);
             const yPos = chartBottom - (point.y * scale); // Subtract from our new "floor"
-            console.log(point.isInc);
             
-            // Change stroke style when discus is decreasing
-            if (index === 0) {
+            if (curIndex === 0) {
                 this.ctx.moveTo(xPos, yPos);
             } 
             else {
@@ -112,10 +125,13 @@ export class Renderer {
                     isCurrentlyRed = true;
                 }
                 this.ctx.lineTo(xPos, yPos);
+                this.ctx.stroke();
             }
-        });
+            curIndex++;
+            this.currentAnimationId = window.requestAnimationFrame(animate)
+        }
 
-        this.ctx.stroke();
+        this.currentAnimationId = window.requestAnimationFrame(animate);
     }
-    
 }
+

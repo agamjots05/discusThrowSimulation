@@ -1,10 +1,10 @@
 export interface Point {
     x: number;
     y: number;
+    isInc: boolean;
 }
 
 export interface PhysicsRequest {
-
     velocity: number;
     angle: number;
 
@@ -15,4 +15,5 @@ export interface PhysicsResponse {
     points: Point[];
     maxX: number;
     maxY: number;
+    
 }
