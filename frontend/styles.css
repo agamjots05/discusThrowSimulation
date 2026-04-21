@@ -1,0 +1,20 @@
+body {
+    overflow: hidden;
+    
+}
+#canvasId{
+    display: block;
+}
+.formContainer {
+    top:0;
+    left: 50%;
+    transform:translateX(-50%);
+    position: absolute;
+    z-index: 10; /* Ensures it stays on top of the canvas */
+    align-items:end;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 20px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    
+}
+

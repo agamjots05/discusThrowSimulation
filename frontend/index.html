@@ -1,25 +1,29 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+        <link rel="stylesheet" href="./styles.css"> </link>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>frontend</title>
   </head>
   <body>
     <div id="app">
-            <h1> Throw Simulation</h1>
-            <form id="formId" >
-                <label>Initial Velocity:</label>
-                <!--TODO: Change input to slider rather than keybord input  -->
-                <input id="velId" type="number"> <br> <br>
-                <label>Angle Of Release:</label>
-                <input id="angId" type="number"> <br><br>
-                <input type="submit" src="/api.ts" value="Simulate">
-            </form>
-            <canvas id="canvasId">
+            <canvas id="canvasId"></canvas>
+            <div class= "formContainer">
+                <h1> Throw Simulation</h1>
+                <form id="formId" >
+                    <label>Initial Velocity:</label>
+                    <input id="velNum" type="number" min="0" max="300" value="50">
+                    <input id="velSlider" type="range" min="0" max="300" value="50">
+                    <br><br>
 
-            </canvas>
+                    <label>Angle Of Release:</label>
+                    <input id="angId" type="number"> <br><br>
+                    <input type="submit" value="Simulate">
+                </form>
+            </div>
+
             <script type="module" src="src/main.ts"></script>
      </div>
   </body>

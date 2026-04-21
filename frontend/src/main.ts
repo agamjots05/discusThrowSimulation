@@ -3,14 +3,21 @@ import type { PhysicsResponse } from "./physics.types";
 import { Renderer } from "./render";
 
 const form = document.getElementById("formId")!;
-const velInput = document.getElementById("velId") as HTMLInputElement;
+const velSliderInput = document.getElementById("velSlider") as HTMLInputElement;
+const velNumberInput = document.getElementById("velNum") as HTMLInputElement;
 const angInput = document.getElementById("angId") as HTMLInputElement;
 
+velSliderInput.addEventListener("change", () =>{
+    velNumberInput.value = velSliderInput.value;
+})
 
+velNumberInput.addEventListener("change", () => {
+    velSliderInput.value = velNumberInput.value;
+})
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const v = parseFloat(velInput.value);
+    const v = parseFloat(velNumberInput.value);
     const a = parseFloat(angInput.value);
 
     try {
