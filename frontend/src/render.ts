@@ -71,7 +71,7 @@ export class Renderer {
     }
 
     
-    public drawTrajectory(points: Point[], maxX: number, maxY: number) {
+    public drawTrajectory(points: Point[], maxX: number, maxY: number, onComplete?: () => void) {
         // Removing any pre-existing animations before moving on 
         if (this.currentAnimationId !== null){
             cancelAnimationFrame(this.currentAnimationId);
@@ -102,6 +102,9 @@ export class Renderer {
             // Index out of bounds
             if (curIndex >= points.length){
                 this.currentAnimationId = null;
+                if (onComplete){
+                    onComplete();
+                }
                 return
             }
 

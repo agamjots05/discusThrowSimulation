@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-        <link rel="stylesheet" href="./styles.css"> </link>
+        <link rel="stylesheet" href="./styles.css"/>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,9 @@
                     <br><br>
 
                     <label>Angle Of Release:</label>
-                    <input id="angId" type="number"> <br><br>
+                    <input id="angNum" type="number" min="0" max="90" value="45">
+                    <input id="angSlider" type="range" min="0" max="90" value="45">
+                    <br><br>
                     <input type="submit" value="Simulate">
                 </form>
             </div>
