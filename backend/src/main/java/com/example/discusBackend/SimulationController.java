@@ -16,6 +16,6 @@ public class SimulationController {
 
     @PostMapping("/simulate")
     public PhysicsResponse throwRequest(@RequestBody ThrowRequest request){
-        return this.throwService.findDistance(request.getAngle(), request.getVelocity());
+        return this.throwService.findDistance(request.getAngle(), request.getVelocity(), request.getMass(), request.getWindSpeed());
     }
 }
